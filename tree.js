@@ -14,23 +14,21 @@ export default class Tree {
     */
 
     buildTree = (array) => {
+        if (array.length <= 0) return null;
         // [...array] makes a copy of the array
-        let copy = [...array];
-        if (!this.isSortedUnique(array)) {
-            copy = this.sortUnique(array);
+        let nodesArray = [...array];
+        if (!this.isSortedUnique(array) || !this.isNodes(array)) {
+            nodesArray = this.intToNodes(this.sortUnique(array));
         }
-        const uniqueArray = [...copy];
 
-        // BST Creating the balanced tree
-        // Get the root(middle node)
         const start = 0;
-        const end = uniqueArray.length;
+        const end = nodesArray.length;
         const middle = Math.floor((start + end) / 2);
 
-        // Check the middle
-
-        // Return a root node
-        return uniqueArray[middle];
+        const root = nodesArray[middle];
+        root.left = this.buildTree(nodesArray.slice(start, middle));
+        root.right = this.buildTree(nodesArray.slice(middle+1))
+        return root;
     }
 
     /* 
@@ -72,6 +70,30 @@ export default class Tree {
         } while (hasSwapped)
         
         return uniqueArray;
+    }
+
+    isNodes = (array) => {
+        // Returns true if all array elements are nodes
+        array.forEach(element => {
+            if (!element instanceof Node) {
+                return false;
+            }
+        })
+        return true;
+
+    }
+
+    intToNodes = (array) => {
+        const nodes = [];
+        array.forEach(data => {
+            if (data instanceof Node) {
+                nodes.push(data);
+            } else {
+                nodes.push(new Node(data));
+            }
+        });
+
+        return nodes;
     }
 }
 

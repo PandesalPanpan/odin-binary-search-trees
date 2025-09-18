@@ -101,10 +101,10 @@ export default class Tree {
             // Comparing elements
             hasSwapped = false;
             for (let i = 0; i < uniqueArray.length; i++) {
-                if (uniqueArray[i] > uniqueArray[i+1]) {
+                if (uniqueArray[i] > uniqueArray[i + 1]) {
                     const temporary = uniqueArray[i];
-                    uniqueArray[i] = uniqueArray[i+1];
-                    uniqueArray[i+1] = temporary;
+                    uniqueArray[i] = uniqueArray[i + 1];
+                    uniqueArray[i + 1] = temporary;
                     hasSwapped = true;
                 }
             }

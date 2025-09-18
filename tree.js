@@ -128,6 +128,17 @@ export default class Tree {
         }
     }
 
+    inOrderForEach = (callback, currentNode = this.root) => {
+        if (typeof callback !== 'function') throw new Error(`Callback must be a function.`);
+
+        if (currentNode !== null) {
+            this.inOrderForEach(callback, currentNode.left);
+            callback(currentNode);
+            this.inOrderForEach(callback, currentNode.right);
+        }
+
+    }
+
     /* 
         Helper functions 
         isSorted(array) loop through and check if [0] < [1]

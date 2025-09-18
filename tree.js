@@ -70,6 +70,17 @@ export default class Tree {
         return true;
     }
 
+    find = (value, currentNode = this.root) => {
+        if (currentNode === null) return null;
+
+        if (currentNode.data === value) return currentNode;
+
+        const leftResult = this.find(value, currentNode.left);
+        if (leftResult) return leftResult;
+
+        return this.find(value, currentNode.right);
+    }
+
     getSuccessor = (current) => {
         current = current.right;
         while (current !== null && current.left !== null) {

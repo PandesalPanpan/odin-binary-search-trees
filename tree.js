@@ -129,6 +129,14 @@ export default class Tree {
 
         return nodes;
     }
+
+    inorder = (currentRoot) => {
+        if (currentRoot !== null) {
+            this.inorder(currentRoot.left);
+            console.log(currentRoot.data);
+            this.inorder(currentRoot.right);
+        }
+    }
 }
 
 const tree = new Tree([1,2,3]);

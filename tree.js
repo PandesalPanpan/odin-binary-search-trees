@@ -25,10 +25,51 @@ export default class Tree {
         const end = nodesArray.length;
         const middle = Math.floor((start + end) / 2);
 
-        const root = nodesArray[middle];
-        root.left = this.buildTree(nodesArray.slice(start, middle));
-        root.right = this.buildTree(nodesArray.slice(middle+1))
-        return root;
+        const rootNode = nodesArray[middle];
+        rootNode.left = this.buildTree(nodesArray.slice(start, middle));
+        rootNode.right = this.buildTree(nodesArray.slice(middle + 1));
+
+        this.root = rootNode;
+        return rootNode;
+    }
+
+
+    /* 
+        insert(value)
+        insert a node correctly at O(log n)
+    */
+    insert = (value) => {
+        let currentNode = this.root;
+        if (value == currentNode.data) throw new Error(`Value: ${value} already exist in the tree`)
+        // Traverse the tree
+        // Determine to go left or right
+
+        let previousNode;
+        let isLeft;
+        do {
+            previousNode = currentNode
+            if (value < currentNode.data) {
+                // Go left
+                currentNode = currentNode.left;
+                isLeft = true; 
+            } else if (value > currentNode.data) {
+                // Go Right
+                currentNode = currentNode.right;
+                isLeft = false;
+            } else {
+                throw new Error(`Value: ${value} already exist in the tree.`)
+            }
+        } while (currentNode)
+
+        const newNode = new Node(value);
+        if (isLeft) {
+            // Point the previous node left pointer to the current node
+            previousNode.left = newNode;
+            return true;
+        }
+
+        previousNode.right = newNode;
+        return true;
     }
 
     /* 

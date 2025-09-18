@@ -159,6 +159,18 @@ export default class Tree {
         }
     }
 
+    height = (value) => {
+        // Find the node with that value first
+        const node = this.find(value);
+        if (!node) throw new Error(`${value} node is not found.`);
+        return this._height(node);
+    }
+
+    _height = (node) => {
+        if (!node) return -1;
+        return 1 + Math.max(this._height(node.left), this._height(node.right));
+    }
+
     /* 
         Helper functions 
         isSorted(array) loop through and check if [0] < [1]

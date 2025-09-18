@@ -1,9 +1,7 @@
 import Node from "./node.js";
 export default class Tree {
-    root;
-
     constructor(array) {
-        this.array = array;
+        this.root = this.buildTree(array);
     }
 
     /* 

@@ -70,6 +70,35 @@ export default class Tree {
         return true;
     }
 
+    getSuccessor = (current) => {
+        current = current.right;
+        while (current !== null && current.left !== null) {
+            current = current.left;
+        }
+        return current;
+    }
+
+    deleteItem = (value, root = this.root) => {
+
+        if (root === null) return root;
+
+        if (root.data > value) {
+            root.left = this.deleteItem(value, root.left);
+        } else if (root.data < value) {
+            root.right = this.deleteItem(value, root.right);
+        } else {
+
+            if (root.left === null) return root.right;
+            if (root.right === null) return root.left;
+
+            let succ = this.getSuccessor(root);
+            root.value = succ.value;
+            this.right = this.deleteItem(succ.value, root.right);
+        }
+
+        return root;
+    }
+
     /* 
         Helper functions 
         isSorted(array) loop through and check if [0] < [1]

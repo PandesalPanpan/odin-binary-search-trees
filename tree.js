@@ -115,12 +115,7 @@ export default class Tree {
 
     isNodes = (array) => {
         // Returns true if all array elements are nodes
-        array.forEach(element => {
-            if (!element instanceof Node) {
-                return false;
-            }
-        })
-        return true;
+        return array.every(element => element instanceof Node);
 
     }
 

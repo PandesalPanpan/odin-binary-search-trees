@@ -171,6 +171,27 @@ export default class Tree {
         return 1 + Math.max(this._height(node.left), this._height(node.right));
     }
 
+    depth = (value) => {
+        const node = this.find(value);
+        if (!node) return null;
+
+        // From the selected node, up to the root node
+        // From root node, navigate until it reaches the correct node
+        let currentNode = this.root;
+        let depth = 0;
+        while (currentNode !== node) {
+            // Determine to either go left or right
+            if (value < currentNode.data) {
+                currentNode = currentNode.left;
+            } else {
+                currentNode = currentNode.right;
+            }
+            depth++;
+        }
+        return depth;
+    }
+
+
     /* 
         Helper functions 
         isSorted(array) loop through and check if [0] < [1]

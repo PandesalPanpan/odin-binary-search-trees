@@ -110,6 +110,24 @@ export default class Tree {
         return root;
     }
 
+    levelOrderForEach = (callback) => {
+        if (!callback) throw new Error(`A callback is required.`);
+        const queue = [this.root];
+        while (queue.length > 0) {
+            const currentNode = queue.shift();
+            // Push current node childrens to the queue
+            if (currentNode.left instanceof Node) {
+                queue.push(currentNode.left);
+            }
+
+            if (currentNode.right instanceof Node) {
+                queue.push(currentNode.right);
+            }
+
+            const cb = callback(currentNode);
+        }
+    }
+
     /* 
         Helper functions 
         isSorted(array) loop through and check if [0] < [1]

@@ -307,9 +307,3 @@ export default class Tree {
         }
     }
 }
-
-const tree = new Tree([1,2,3]);
-
-console.log(tree.isSortedUnique([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]))
-console.log(tree.sortUnique([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]))
-console.log(tree.buildTree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]));

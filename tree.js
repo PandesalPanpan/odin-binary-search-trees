@@ -226,6 +226,18 @@ export default class Tree {
         return check(this.root) !== -1;
     }
 
+    rebalance = () => {
+        // Use one of the travels method to grab all the values
+        const sortedValues = [];
+
+        // In Order returns a sorted values
+        this.inOrderForEach((node) => {
+            sortedValues.push(node.data);
+        })
+        
+        return this.buildTree(sortedValues);
+    }
+
 
     /* 
         Helper functions 

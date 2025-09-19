@@ -159,6 +159,26 @@ export default class Tree {
         }
     }
 
+    breadthFirstForEach = (callback, currentNode = this.root) => {
+        if (typeof callback !== 'function') throw new Error(`Callback must be a function.`);
+
+        const queue = [currentNode];
+        while (queue.length > 0) {
+            const node = queue.shift();
+            if (node.left) {
+                queue.push(node.left);
+            }
+
+            if (node.right) {
+                queue.push(node.right);
+            }
+
+            callback(node);
+
+        }
+
+    }
+
     height = (value) => {
         // Find the node with that value first
         const node = this.find(value);

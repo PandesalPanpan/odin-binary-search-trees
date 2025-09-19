@@ -182,7 +182,7 @@ export default class Tree {
     height = (value) => {
         // Find the node with that value first
         const node = this.find(value);
-        if (!node) throw new Error(`${value} node is not found.`);
+        if (!node) return null;
         return this._height(node);
     }
 
